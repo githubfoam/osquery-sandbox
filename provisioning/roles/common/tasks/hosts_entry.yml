@@ -1,0 +1,12 @@
+---
+- name: Add mappings to /etc/hosts
+  blockinfile:
+    path: /etc/hosts
+    block: |
+      {{ item.ip }} {{ item.namelong }} {{ item.nameshort }}
+    marker: "# {mark} ANSIBLE MANAGED BLOCK {{ item.nameshort }}"
+  with_items:
+  - { ip: 192.168.18.9, namelong: vg-osquery-01.local, nameshort: vg-osquery-01 }
+  - { ip: 192.168.18.10, namelong: vg-osquery-02.local, nameshort: vg-osquery-02 }
+  - { ip: 192.168.18.11, namelong: vg-osquery-03.local, nameshort: vg-osquery-03 }
+  when: add_host_entries

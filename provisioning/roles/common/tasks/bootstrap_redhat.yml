@@ -1,0 +1,5 @@
+---
+- name: "Install required packages on RedHat "
+  package:
+    name: "{{ common_default_redhat_reqs }}"
+    state: present

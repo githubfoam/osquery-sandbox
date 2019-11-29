@@ -1,0 +1,33 @@
+---
+- name: "Add zeek repository"
+  yum_repository:
+    name: zeek_repos
+    description: zeek_repo
+    baseurl: http://download.opensuse.org/repositories/security:/zeek/CentOS_7/
+    gpgcheck: yes
+    gpgkey: http://download.opensuse.org/repositories/security:/zeek/CentOS_7/repodata/repomd.xml.key
+- name: "Install required packages on RedHat "
+  package:
+    name: "{{ item }}"
+    state: latest
+  with_items:
+    - cmake
+    - make
+    - gcc
+    - gcc-c++
+    - flex
+    - bison
+    - libpcap-devel
+    - openssl-devel
+    - python-devel
+    - swig
+    - zlib-devel
+    - git
+    - zeek
+- name: "Check for zeek"
+  stat:
+   path: '/opt/zeek/bin/zeek'
+  register: zeekpath
+- name: "Set Path for zeek"
+  lineinfile: dest='/etc/profile' regexp='^#?\s*export PATH=/opt/zeek(.*)$' line='export PATH=/opt/zeek/bin:$PATH' state=present
+  when: zeekpath.stat.exists

@@ -1,0 +1,15 @@
+---
+- debug:
+    msg: "{{ hostvars[inventory_hostname].ansible_distribution }}"
+- debug:
+    msg: "{{ hostvars[inventory_hostname].ansible_distribution_major_version }}"
+- debug:
+    msg: "{{ hostvars[inventory_hostname].ansible_distribution_version }}"
+
+- name: "Add Debian osquery"
+  include_tasks: osquery_debian.yml
+  when: " ansible_os_family == 'Debian' and ansible_distribution in ['Debian','Ubuntu'] "
+
+- name: "Add RedHat osquery"
+  include_tasks: osquery_redhat.yml
+  when: " ansible_os_family == 'RedHat' and ansible_distribution in ['CentOS','Fedora','Scientific'] "

@@ -1,0 +1,14 @@
+---
+- name: Add /etc/hosts entries
+  include_tasks: hosts_entry.yml
+
+- name: Add /etc/resolv.conf entries
+  include_tasks: resolv_entry.yml
+
+- name: Add Debian commons
+  include_tasks: bootstrap_debian.yml
+  when: " ansible_os_family == 'Debian' and ansible_distribution in ['Debian','Ubuntu'] "
+
+- name: Add RedHat commons
+  include_tasks: bootstrap_redhat.yml
+  when: " ansible_os_family == 'RedHat' and ansible_distribution in ['CentOS','Fedora','Scientific'] "

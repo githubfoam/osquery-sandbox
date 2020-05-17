@@ -32,8 +32,8 @@ jobs:
           - sudo virsh list --all #show all running KVM/libvirt VMs
           - sudo vagrant box add "bento/ubuntu-19.10" --provider=virtualbox
           - sudo vagrant mutate "bento/ubuntu-19.10" libvirt
-          # - sudo vagrant box add "bento/centos-7.7" --provider=virtualbox
-          # - sudo vagrant mutate "bento/centos-7.7" libvirt
+          - sudo vagrant box add "bento/centos-8.0" --provider=virtualbox
+          - sudo vagrant mutate "bento/centos-8.0" libvirt
           # - sudo vagrant box add "bento/fedora-31" --provider=virtualbox
           # - sudo vagrant mutate "bento/fedora-31" libvirt
           # - sudo vagrant box add "freebsd/FreeBSD-12.1-RELEASE" --provider=virtualbox
@@ -41,6 +41,7 @@ jobs:
           - vagrant box list #veridy installed boxes
           - vagrant status #Check the status of the VMs to see that none of them have been created yet
           - sudo vagrant up --provider=libvirt vg-osquery-01
+          - sudo vagrant up --provider=libvirt vg-osquery-02          
           # - sudo vagrant up --provider=libvirt
           # - sudo vagrant up --no-parallel --provider=libvirt # vagrant serial runs
           # - travis_wait 30 sudo vagrant up --provider=libvirt

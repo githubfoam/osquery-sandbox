@@ -19,5 +19,5 @@
   when: " ansible_os_family == 'RedHat' and ansible_distribution in ['CentOS','Scientific'] "
 
 - name: "Add Fedora osquery"
-  include_tasks: osquery_redhat.yml
+  include_tasks: osquery_fedora.yml
   when: " ansible_os_family == 'RedHat' and ansible_distribution in ['Fedora'] "

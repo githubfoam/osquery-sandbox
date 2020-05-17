@@ -170,6 +170,8 @@ osquery> select * from listening_ports ;
 all recent file activity on the server
 osquery> select target_path, action, uid from file_events ;
 
+
+
 ~~~~
 CTI, DFIR, OSX
 ~~~~
@@ -181,7 +183,12 @@ select * from launchd where label = 'com.ht.RCSMac' or label like 'com.yourcompa
 
 
 ~~~~
-win
+Centos osquery
+~~~~
+list of all installed RPM packages
+osquery> .all rpm_packages;
+~~~~
+win osquery
 ~~~~
 Check the processes that have a deleted executable
 SELECT * FROM processes WHERE on_disk = 0;
@@ -208,8 +215,13 @@ Alternatively, Check for ARP anomalies from the host's perspective:
       (SELECT address, mac, COUNT(mac) AS mac_count FROM arp_cache GROUP BY mac)
     WHERE mac_count > 1;
 
+    osquery> .all firefox_addons;
+    osquery> .all  chrome_extensions;
+
 ~~~~
 ~~~~
 predefined tables
 <https://osquery.io/schema/4.1.1>
+
+# https://osquery.readthedocs.io/en/stable/installation/install-linux/
 ~~~~

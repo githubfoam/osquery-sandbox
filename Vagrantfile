@@ -65,6 +65,7 @@
 # sudo mv terraform /usr/local/bin/
 # terraform version
 # SCRIPT
+
 Vagrant.require_version ">= 1.6.0"
 VAGRANTFILE_API_VERSION = "2"
 # YAML module for reading box configurations.
@@ -90,6 +91,13 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
               vb.customize ["modifyvm", :id, "--groups", "/zeek-sandbox"] # create vbox group
           end # end of box.vm.providers
 
+          if Vagrant::Util::Platform.freebsd?
+              # box.vm.provision "shell", path: server["shell_provision"]
+              box.vm.provision "shell", path: "provisioning/bootstrap_freebsd.sh"
+              puts "Vagrant launched from FreeBSD."
+          end
+          box.vm.provision "shell", path: "provisioning/bootstrap.sh"
+          # box.vm.provision "shell", path: server["shell_provision"]
           box.vm.provision "ansible_local" do |ansible|
               # ansible.compatibility_mode = "2.0"
               ansible.compatibility_mode = server["ansible_compatibility_mode"]
@@ -99,12 +107,11 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
               # ansible.verbose = "vvvv" # debug
            end # end if box.vm.provision
           # box.vm.provision "shell", inline: $ubuntu_docker_script, privileged: false
-          # box.vm.provision "shell", inline: server["ubuntu_docker_script"], privileged: false
-          box.vm.provision "shell", inline: <<-SHELL
-          echo "======================================================================================="
-          hostnamectl status
-          echo "======================================================================================="
-          SHELL
+          # box.vm.provision "shell", inline: <<-SHELL
+          # echo "======================================================================================="
+          # hostnamectl status
+          # echo "======================================================================================="
+          # SHELL
 
         end # end of config.vm
       end  # end of servers_list.each loop

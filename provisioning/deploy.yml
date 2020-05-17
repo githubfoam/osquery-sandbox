@@ -11,9 +11,31 @@
     shell: "hostnamectl set-hostname {{ inventory_hostname }}"
   roles:
     - common
+
 - name: "Install osquery"
   gather_facts: true
   hosts:  vg-osquery-01
+  become: yes
+  roles:
+    - osquery
+
+- name: "Install osquery"
+  gather_facts: true
+  hosts:  vg-osquery-02
+  become: yes
+  roles:
+    - osquery
+
+- name: "Install osquery"
+  gather_facts: true
+  hosts:  vg-osquery-03
+  become: yes
+  roles:
+    - osquery
+
+- name: "Install osquery"
+  gather_facts: true
+  hosts:  vg-osquery-04
   become: yes
   roles:
     - osquery

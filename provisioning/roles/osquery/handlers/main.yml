@@ -1,2 +1,5 @@
 ---
-# handlers file for common
+- name: "restart osquery"
+  service:
+    name: "{{ osquery_combined.daemon }}"
+    state: restarted

@@ -41,12 +41,12 @@
     mode: 0644
   notify: restart osquery
 
-- name: "Make sure osquery autostarts"
-  service:
-    name: "{{ osquery_combined.daemon }}"
-    enabled: yes
-  when:
-    - osquery_combined.enable_service
+# - name: "Make sure osquery autostarts"
+#   service:
+#     name: "{{ osquery_combined.daemon }}"
+#     enabled: yes
+#   when:
+#     - osquery_combined.enable_service
 
 - name: "Restart osquery"
   service:

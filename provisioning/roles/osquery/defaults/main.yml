@@ -1,2 +1,25 @@
 ---
-# defaults file for common
+# https://osquery.readthedocs.io/en/stable/deployment/configuration/
+# Overload variables using the dict named "osquery"
+osquery:
+  version: "latest"
+
+osquery_defaults:
+  daemon: "osqueryd"
+  version: "latest"
+  enable_service: True
+  config_include_dir: "/etc/osquery"
+  config_plugin: "filesystem"
+  logger_plugin: "filesystem"
+  logger_path: "/var/log/osquery"
+  disable_logging: "false"
+  schedule_splay_percent: 10
+  pidfile: "/var/osquery/osquery.pidfile"
+  events_expiry: 3600
+  database_path: "/var/osquery/osquery.db"
+  disable_tables: ""
+  verbose: "true"
+  read_max: 100000
+  events_max: 100000
+  enable_monitor: "true"
+  host_identifier: "hostname"

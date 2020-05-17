@@ -1,6 +1,6 @@
 ---
 - vagrant_box_host: "vg-osquery-01"
-  vagrant_box: "bento/ubuntu-19.04"
+  vagrant_box: "bento/ubuntu-19.10"
   vbox_name: "vbox-osquery-01"
   vbox_ram: 512
   vbox_cpu: 2
@@ -9,7 +9,8 @@
   guest_port: 1236
   host_port: 12346
   server_bootstrap: "provisioning/deploy.yml"
-  ansible_version: "2.9.1" # ubuntu-16.04
+  shell_provision: "bootstrap.sh"
+  ansible_version: "2.9.9" # ubuntu-16.04
   ansible_compatibility_mode: "2.0"
 
 - vagrant_box_host: "vg-osquery-02"
@@ -22,7 +23,8 @@
   guest_port: 80
   host_port: 81
   server_bootstrap: "provisioning/deploy.yml"
-  ansible_version: "2.8.5"
+  shell_provision: "bootstrap.sh"
+  ansible_version: "2.9.7"
   ansible_compatibility_mode: "2.0"
 
 - vagrant_box_host: "vg-osquery-03"
@@ -35,5 +37,34 @@
   guest_port: 1235
   host_port: 1235
   server_bootstrap: "provisioning/deploy.yml"
-  ansible_version: "2.8.6"
+  shell_provision: "bootstrap.sh"
+  ansible_version: "2.9.7"
+  ansible_compatibility_mode: "2.0"
+
+- vagrant_box_host: "vg-osquery-04"
+  vagrant_box: "bento/debian-10.1"
+  vbox_name: "vbox-osquery-04"
+  vbox_ram: 512
+  vbox_cpu: 2
+  network_type: "private_network"
+  vagrant_box_ip: 192.168.18.12
+  guest_port: 1235
+  host_port: 1235
+  server_bootstrap: "provisioning/deploy.yml"
+  shell_provision: "provisioning/bootstrap.sh"
+  ansible_version: "2.7.7"
+  ansible_compatibility_mode: "2.0"
+
+- vagrant_box_host: "vg-osquery-05"
+  vagrant_box: "freebsd/FreeBSD-12.1-RELEASE"
+  vbox_name: "vbox-osquery-05"
+  vbox_ram: 1024
+  vbox_cpu: 2
+  network_type: "private_network"
+  vagrant_box_ip: 192.168.18.13
+  guest_port: 1235
+  host_port: 1235
+  server_bootstrap: "provisioning/deploy.yml"
+  shell_provision: "provisioning/bootstrap.sh"
+  ansible_version: "2.7.7"
   ansible_compatibility_mode: "2.0"

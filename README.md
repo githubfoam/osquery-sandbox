@@ -1,5 +1,9 @@
 # osquery cti,dfir
 
+
+[![Build Status](https://travis-ci.com/githubfoam/osquery-sandbox.svg?branch=master)](https://travis-ci.com/githubfoam/osquery-sandbox)  
+
+
 ~~~~
 vagrant up
 ~~~~

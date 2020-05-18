@@ -40,13 +40,10 @@ jobs:
           - sudo vagrant mutate "bento/debian-10.1" libvirt
           - vagrant box list #veridy installed boxes
           - vagrant status #Check the status of the VMs to see that none of them have been created yet
-          - sudo vagrant up --provider=libvirt vg-osquery-01
-          - sudo vagrant up --provider=libvirt vg-osquery-02
-          # - sudo vagrant up --provider=libvirt vg-osquery-03
-          - sudo vagrant up --provider=libvirt vg-osquery-04
+          # - sudo vagrant up --provider=libvirt vg-osquery-01
           # - sudo vagrant up --provider=libvirt
           # - sudo vagrant up --no-parallel --provider=libvirt # vagrant serial runs
-          # - travis_wait 30 sudo vagrant up --provider=libvirt
+          - travis_wait 30 sudo vagrant up --provider=libvirt vg-osquery-01 vg-osquery-02 vg-osquery-04
           - sudo vagrant status
           - sudo vagrant global-status
           # - sudo vagrant ssh rundeck-server -c "sudo /etc/init.d/rundeckd status"

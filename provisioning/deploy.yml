@@ -26,12 +26,12 @@
   roles:
     - osquery
 
-# - name: "Install osquery"
-#   gather_facts: true
-#   hosts:  vg-osquery-03
-#   become: yes
-#   roles:
-#     - osquery
+- name: "Install osquery"
+  gather_facts: true
+  hosts:  vg-osquery-03
+  become: yes
+  roles:
+    - osquery
 
 - name: "Install osquery"
   gather_facts: true

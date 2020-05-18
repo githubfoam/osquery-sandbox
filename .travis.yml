@@ -38,17 +38,17 @@ jobs:
           - sudo vagrant mutate "bento/fedora-31" libvirt
           - sudo vagrant box add "bento/debian-10.1" --provider=virtualbox
           - sudo vagrant mutate "bento/debian-10.1" libvirt
-          # - sudo vagrant box add "freebsd/FreeBSD-12.1-RELEASE" --provider=virtualbox
-          # - sudo vagrant mutate "freebsd/FreeBSD-12.1-RELEASE" libvirt
+          - sudo vagrant box add "freebsd/FreeBSD-12.1-RELEASE" --provider=virtualbox
+          - sudo vagrant mutate "freebsd/FreeBSD-12.1-RELEASE" libvirt
           - vagrant box list #veridy installed boxes
           - vagrant status #Check the status of the VMs to see that none of them have been created yet
-          - sudo vagrant up --provider=libvirt vg-osquery-01
-          - sudo vagrant up --provider=libvirt vg-osquery-02
-          - sudo vagrant up --provider=libvirt vg-osquery-03
-          - sudo vagrant up --provider=libvirt vg-osquery-04               
+          # - sudo vagrant up --provider=libvirt vg-osquery-01
+          # - sudo vagrant up --provider=libvirt vg-osquery-02
+          # - sudo vagrant up --provider=libvirt vg-osquery-03
+          # - sudo vagrant up --provider=libvirt vg-osquery-04
           # - sudo vagrant up --provider=libvirt
           # - sudo vagrant up --no-parallel --provider=libvirt # vagrant serial runs
-          # - travis_wait 30 sudo vagrant up --provider=libvirt
+          - travis_wait 30 sudo vagrant up --provider=libvirt
           - sudo vagrant status
           - sudo vagrant global-status
           # - sudo vagrant ssh rundeck-server -c "sudo /etc/init.d/rundeckd status"

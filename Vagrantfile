@@ -36,7 +36,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
           box.vm.provision "ansible_local" do |ansible|
               # ansible.compatibility_mode = "2.0"
               ansible.compatibility_mode = server["ansible_compatibility_mode"]
-              ansible.version = server["ansible_version"]
+              # ansible.version = server["ansible_version"]
               ansible.playbook = server["server_bootstrap"]
               # ansible.inventory_path = 'provisioning/hosts'
               # ansible.verbose = "vvvv" # debug

@@ -10,7 +10,7 @@
   host_port: 12346
   server_bootstrap: "provisioning/deploy.yml"
   shell_provision: "bootstrap.sh"
-  ansible_version: "2.9.9" # ubuntu-16.04
+  # ansible_version: "2.9.9" # ubuntu-16.04
   ansible_compatibility_mode: "2.0"
 
 - vagrant_box_host: "vg-osquery-02"
@@ -24,7 +24,7 @@
   host_port: 81
   server_bootstrap: "provisioning/deploy.yml"
   shell_provision: "bootstrap.sh"
-  ansible_version: "2.9.7"
+  # ansible_version: "2.9.7"
   ansible_compatibility_mode: "2.0"
 
 - vagrant_box_host: "vg-osquery-03"
@@ -38,7 +38,7 @@
   host_port: 1235
   server_bootstrap: "provisioning/deploy.yml"
   shell_provision: "bootstrap.sh"
-  ansible_version: "2.9.7"
+  # ansible_version: "2.9.7"
   ansible_compatibility_mode: "2.0"
 
 - vagrant_box_host: "vg-osquery-04"
@@ -52,5 +52,5 @@
   host_port: 1235
   server_bootstrap: "provisioning/deploy.yml"
   shell_provision: "provisioning/bootstrap.sh"
-  ansible_version: "2.7.7"
+  # ansible_version: "2.7.7"
   ansible_compatibility_mode: "2.0"

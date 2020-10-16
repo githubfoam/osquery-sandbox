@@ -1,0 +1,6 @@
+-c constraints.txt
+testinfra
+pytest
+codecov
+ansible
+paramiko

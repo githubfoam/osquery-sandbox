@@ -11,8 +11,7 @@ vagrant plugin install vagrant-mutate #Convert vagrant boxes to work with differ
 
 vagrant box add "freebsd/FreeBSD-12.1-STABLE" --provider=virtualbox
 vagrant mutate "freebsd/FreeBSD-12.1-STABLE" libvirt
-vagrant status
-
+vagrant init --template Vagrantfile.freebsd.provision.erb
 
 virsh list --all #show all running KVM/libvirt VMs
 vagrant box list #veridy installed boxes

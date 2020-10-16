@@ -10,12 +10,18 @@ vagrant plugin install vagrant-libvirt #The vagrant-libvirt plugin is required w
 vagrant plugin install vagrant-mutate #Convert vagrant boxes to work with different providers
 
 #https://github.com/chef/bento/tree/master/packer_templates/debian
-vagrant box add "bento/fedora-31" --provider=virtualbox
-vagrant mutate "bento/fedora-31" libvirt
+# vagrant box add "bento/fedora-31" --provider=virtualbox
+# vagrant mutate "bento/fedora-31" libvirt
+# vagrant init --template Vagrantfile.provision.ansible.erb
+# # must be created in project root directory with Vagrantfile template file
+# vagrant up --provider=libvirt "vg-osquery-03"
+
+
+# https://app.vagrantup.com/fedora/boxes/32-cloud-base
+vagrant box add "fedora/32-cloud-base" --provider=libvirt
 vagrant init --template Vagrantfile.provision.ansible.erb
 # must be created in project root directory with Vagrantfile template file
 vagrant up --provider=libvirt "vg-osquery-03"
-
 
 vagrant box list #veridy installed boxes
 #A Vagrant environment or target machine is required to run this

@@ -14,7 +14,7 @@ vagrant box add "bento/debian-10.4" --provider=virtualbox
 vagrant mutate "bento/debian-10.4" libvirt
 vagrant init --template Vagrantfile.provision.ansible.erb
 # must be created in project root directory with Vagrantfile template file
-vagrant up --provider=libvirt "vg-debian-04"
+vagrant up --provider=libvirt "vg-osquery-04"
 
 
 vagrant box list #veridy installed boxes

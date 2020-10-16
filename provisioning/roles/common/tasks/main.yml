@@ -1,4 +1,13 @@
 ---
+- name: "OS fingerprinting "
+  debug:
+    msg:
+    - " ansible_os_family: {{ hostvars[inventory_hostname].ansible_os_family }} "
+    - " ansible_distribution: {{ hostvars[inventory_hostname].ansible_distribution }}"
+    - " ansible_distribution_major_version: {{ hostvars[inventory_hostname].ansible_distribution_major_version }}"
+    - " ansible_distribution_release: {{ hostvars[inventory_hostname].ansible_distribution_release }}"
+    - " ansible_distribution_version: {{ hostvars[inventory_hostname].ansible_distribution_version }}"
+
 - name: Add /etc/hosts entries
   include_tasks: hosts_entry.yml
 

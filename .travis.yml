@@ -112,7 +112,7 @@ matrix:
     #     - sudo rm Vagrantfile # required to run Vagrantfile template     
     #     - deactivate          
 
-    - name: "deploy fedora (vagrantcloud) osquery Python 3.7 on bionic amd64"
+    - name: "deploy bash provisioning  fedora (vagrantcloud) osquery Python 3.7  on bionic amd64"
       dist: bionic
       arch: amd64
       language: python
@@ -131,7 +131,7 @@ matrix:
         - sudo rm Vagrantfile # required to run Vagrantfile template     
         - deactivate 
 
-    - name: "deploy freebsd osquery Python 3.7 on focal amd64"
+    - name: "deploy bash provisioning  freebsd osquery Python 3.7 on bionic amd64"
       # dist: focal #Package libvirt-bin is not available, but is referred to by another package.
       dist: bionic
       arch: amd64

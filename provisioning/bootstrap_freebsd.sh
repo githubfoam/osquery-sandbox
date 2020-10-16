@@ -2,8 +2,8 @@
 set -euo pipefail
 
 echo "===================Install ansible================================================================="
-sudo pkg install py36-ansible
-
+# sudo pkg install py36-ansible
+pkg install py36-ansible
 # https://osquery.readthedocs.io/en/stable/installation/install-freebsd/
 echo "====================Install osquery================================================================"
 # from ports

@@ -8,25 +8,26 @@ matrix:
   fast_finish: true
   include:
 
-    - name: "deploy debian-10.4 buster(bento) osquery Python 3.7 on focal amd64"
-      # dist: focal #Package libvirt-bin is not available, but is referred to by another package.
-      dist: bionic
-      arch: amd64
-      language: python
-      python: 3.7
-      before_install:
-        - pip3 install virtualenv
-        - virtualenv -p $(which python3) ~venvpy3
-        - source ~venvpy3/bin/activate
-        - pip install -r requirements.txt
-      script:
-        - sudo make deploy-vagrant
-        - sudo make deploy-libvirt
-        - sudo make deploy-debian-bento-buster
-      after_success:
-        - sudo vagrant destroy -f # required to run Vagrantfile template        
-        - sudo rm Vagrantfile # required to run Vagrantfile template     
-        - deactivate        
+ # TESTED_OK
+    # - name: "deploy debian-10.4 buster(bento) osquery Python 3.7 on focal amd64"
+    #   # dist: focal #Package libvirt-bin is not available, but is referred to by another package.
+    #   dist: bionic
+    #   arch: amd64
+    #   language: python
+    #   python: 3.7
+    #   before_install:
+    #     - pip3 install virtualenv
+    #     - virtualenv -p $(which python3) ~venvpy3
+    #     - source ~venvpy3/bin/activate
+    #     - pip install -r requirements.txt
+    #   script:
+    #     - sudo make deploy-vagrant
+    #     - sudo make deploy-libvirt
+    #     - sudo make deploy-debian-bento-buster
+    #   after_success:
+    #     - sudo vagrant destroy -f # required to run Vagrantfile template        
+    #     - sudo rm Vagrantfile # required to run Vagrantfile template     
+    #     - deactivate        
 
     - name: "deploy debian-10.4 buster (vagrantcloud) osquery Python 3.7 on focal amd64"      
       dist: bionic
@@ -47,45 +48,47 @@ matrix:
         - sudo rm Vagrantfile # required to run Vagrantfile template     
         - deactivate  
 
-    - name: "deploy bento/ubuntu-19.10 osquery Python 3.7 on focal amd64"
-      # dist: focal #Package libvirt-bin is not available, but is referred to by another package.
-      dist: bionic
-      arch: amd64
-      language: python
-      python: 3.7
-      before_install:
-        - pip3 install virtualenv
-        - virtualenv -p $(which python3) ~venvpy3
-        - source ~venvpy3/bin/activate
-        - pip install -r requirements.txt
-      script:
-        - sudo make deploy-vagrant
-        - sudo make deploy-libvirt
-        - sudo make deploy-debian-bento-ubuntu
-      after_success:
-        - sudo vagrant destroy -f # required to run Vagrantfile template        
-        - sudo rm Vagrantfile # required to run Vagrantfile template     
-        - deactivate         
+ # TESTED_OK
+    # - name: "deploy bento/ubuntu-19.10 osquery Python 3.7 on focal amd64"
+    #   # dist: focal #Package libvirt-bin is not available, but is referred to by another package.
+    #   dist: bionic
+    #   arch: amd64
+    #   language: python
+    #   python: 3.7
+    #   before_install:
+    #     - pip3 install virtualenv
+    #     - virtualenv -p $(which python3) ~venvpy3
+    #     - source ~venvpy3/bin/activate
+    #     - pip install -r requirements.txt
+    #   script:
+    #     - sudo make deploy-vagrant
+    #     - sudo make deploy-libvirt
+    #     - sudo make deploy-debian-bento-ubuntu
+    #   after_success:
+    #     - sudo vagrant destroy -f # required to run Vagrantfile template        
+    #     - sudo rm Vagrantfile # required to run Vagrantfile template     
+    #     - deactivate         
 
-    - name: "deploy bento/centos-7.7 osquery Python 3.7 on focal amd64"
-      # dist: focal #Package libvirt-bin is not available, but is referred to by another package.
-      dist: bionic
-      arch: amd64
-      language: python
-      python: 3.7
-      before_install:
-        - pip3 install virtualenv
-        - virtualenv -p $(which python3) ~venvpy3
-        - source ~venvpy3/bin/activate
-        - pip install -r requirements.txt
-      script:
-        - sudo make deploy-vagrant
-        - sudo make deploy-libvirt
-        - sudo make deploy-debian-bento-centos
-      after_success:
-        - sudo vagrant destroy -f # required to run Vagrantfile template        
-        - sudo rm Vagrantfile # required to run Vagrantfile template     
-        - deactivate         
+  # TESTED_OK
+    # - name: "deploy bento/centos-7.7 osquery Python 3.7 on focal amd64"
+    #   # dist: focal #Package libvirt-bin is not available, but is referred to by another package.
+    #   dist: bionic
+    #   arch: amd64
+    #   language: python
+    #   python: 3.7
+    #   before_install:
+    #     - pip3 install virtualenv
+    #     - virtualenv -p $(which python3) ~venvpy3
+    #     - source ~venvpy3/bin/activate
+    #     - pip install -r requirements.txt
+    #   script:
+    #     - sudo make deploy-vagrant
+    #     - sudo make deploy-libvirt
+    #     - sudo make deploy-debian-bento-centos
+    #   after_success:
+    #     - sudo vagrant destroy -f # required to run Vagrantfile template        
+    #     - sudo rm Vagrantfile # required to run Vagrantfile template     
+    #     - deactivate         
 
     - name: "deploy bento/fedora-31 osquery Python 3.7 on focal amd64"
       # dist: focal #Package libvirt-bin is not available, but is referred to by another package.

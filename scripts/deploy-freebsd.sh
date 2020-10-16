@@ -9,13 +9,6 @@ echo "==========================================================================
 vagrant plugin install vagrant-libvirt #The vagrant-libvirt plugin is required when using KVM on Linux
 vagrant plugin install vagrant-mutate #Convert vagrant boxes to work with different providers
 
-#https://github.com/chef/bento/tree/master/packer_templates/debian
-vagrant box add "bento/centos-7.7" --provider=virtualbox
-vagrant mutate "bento/centos-7.7" libvirt
-vagrant init --template Vagrantfile.freebsd.bash.erb
-# must be created in project root directory with Vagrantfile template file
-vagrant up --provider=libvirt "vg-osquery-02"
-
 vagrant box add "freebsd/FreeBSD-12.1-STABLE" --provider=virtualbox
 vagrant mutate "freebsd/FreeBSD-12.1-STABLE" libvirt
 vagrant status

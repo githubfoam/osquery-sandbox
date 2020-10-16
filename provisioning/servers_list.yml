@@ -56,7 +56,7 @@
   ansible_compatibility_mode: "2.0"
 
 - vagrant_box_host: "vg-osquery-05"
-  vagrant_box: "bento/debian-10.4"
+  vagrant_box: "debian/buster64"
   vbox_name: "vbox-osquery-05"
   vbox_ram: 4096
   vbox_cpu: 2

@@ -1,4 +1,13 @@
 
+deploy-debian-bento-centos:
+	bash scripts/deploy-debian-bento-centos.sh
+
+deploy-debian-bento-fedora:
+	bash scripts/deploy-debian-bento-fedora.sh
+
+deploy-freebsd:
+	bash scripts/deploy-freebsd.sh
+
 deploy-debian-bento-ubuntu:
 	bash scripts/deploy-debian-bento-ubuntu.sh
 

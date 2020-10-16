@@ -121,7 +121,7 @@ matrix:
       script:
         - sudo make deploy-vagrant
         - sudo make deploy-libvirt
-        # - sudo make deploy-debian-bento-ubuntu
+        - sudo make deploy-freebsd
       after_success:
         - sudo vagrant destroy -f # required to run Vagrantfile template        
         - sudo rm Vagrantfile # required to run Vagrantfile template     

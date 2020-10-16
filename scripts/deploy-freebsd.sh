@@ -9,17 +9,24 @@ echo "==========================================================================
 vagrant plugin install vagrant-libvirt #The vagrant-libvirt plugin is required when using KVM on Linux
 vagrant plugin install vagrant-mutate #Convert vagrant boxes to work with different providers
 
-# https://app.vagrantup.com/debian/boxes/buster64
-vagrant box add "debian/buster64" --provider=libvirt
-vagrant init --template Vagrantfile.provision.ansible.erb
+#https://github.com/chef/bento/tree/master/packer_templates/debian
+vagrant box add "bento/centos-7.7" --provider=virtualbox
+vagrant mutate "bento/centos-7.7" libvirt
+vagrant init --template Vagrantfile.freebsd.bash.erb
 # must be created in project root directory with Vagrantfile template file
-vagrant up --provider=libvirt "vg-osquery-05"
+vagrant up --provider=libvirt "vg-osquery-02"
 
-vagrant box list #veridy installed boxes
-#A Vagrant environment or target machine is required to run this
-# vagrant status #Check the status of the VMs to see that none of them have been created yet
+vagrant box add "freebsd/FreeBSD-12.1-STABLE" --provider=virtualbox
+vagrant mutate "freebsd/FreeBSD-12.1-STABLE" libvirt
+vagrant status
+
+
 virsh list --all #show all running KVM/libvirt VMs
-# vagrant destroy -f "vg-compute-05"
+vagrant box list #veridy installed boxes
+vagrant status #Check the status of the VMs to see that none of them have been created yet
+vagrant up --provider=libvirt node-4
+vagrant status
+virsh list --all #show all running KVM/libvirt VMs
 
 
 echo "========================================================================================="

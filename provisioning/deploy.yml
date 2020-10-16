@@ -43,3 +43,19 @@
   roles:
     - common  
     - osquery
+
+- name: "Install osquery"
+  gather_facts: true
+  hosts:  vg-osquery-05
+  become: yes
+  roles:
+    - common  
+    - osquery
+
+- name: "Install osquery"
+  gather_facts: true
+  hosts:  vg-osquery-06
+  become: yes
+  roles:
+    - common  
+    - osquery

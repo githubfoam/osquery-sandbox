@@ -11,4 +11,5 @@
   - { ip: 192.168.18.11, namelong: vg-osquery-03.local, nameshort: vg-osquery-03 }
   - { ip: 192.168.18.12, namelong: vg-osquery-04.local, nameshort: vg-osquery-04 }
   - { ip: 192.168.18.13, namelong: vg-osquery-05.local, nameshort: vg-osquery-05 }  
+  - { ip: 192.168.18.14, namelong: vg-osquery-06.local, nameshort: vg-osquery-06 }  
   # when: add_host_entries

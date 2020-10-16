@@ -5,6 +5,9 @@ deploy-debian-bento-centos:
 deploy-debian-bento-fedora:
 	bash scripts/deploy-debian-bento-fedora.sh
 
+deploy-fedora:
+	bash scripts/deploy-fedora.sh
+
 deploy-freebsd:
 	bash scripts/deploy-freebsd.sh
 

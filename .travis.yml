@@ -9,7 +9,8 @@ matrix:
   include:
 
     - name: "deploy debian-10.4 buster osquery Python 3.7 on focal amd64"
-      dist: focal
+      # dist: focal #Package libvirt-bin is not available, but is referred to by another package.
+      dist: bionic
       arch: amd64
       language: python
       python: 3.7

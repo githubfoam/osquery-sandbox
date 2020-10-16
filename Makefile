@@ -1,18 +1,28 @@
-.PHONY: up vagrant playbook smoketest test clean
+deploy-debian-bento-ppc64:
+	bash scripts/deploy-debian-bento-ppc64.sh
 
-up: vagrant playbook
+deploy-debian-jessie:
+	bash scripts/deploy-debian-jessie.sh
 
-vagrant:
-	@vagrant up --provider=libvirt
+deploy-debian-bento-stretch:
+	bash scripts/deploy-debian-bento-stretch.sh
 
-playbook:
-	@ansible-playbook -i inventories/vagrant.ini swarm.yml
+deploy-debian-stretch:
+	bash scripts/deploy-debian-stretch.sh
 
-smoketest:
-	@ansible-playbook -i inventories/vagrant.ini swarm.yml --tags test
+deploy-debian-bento-buster:
+	bash scripts/deploy-debian-bento-buster.sh
 
-test:
-	@molecule test
+deploy-debian-buster:
+	bash scripts/deploy-debian-buster.sh
 
-clean:
-	@vagrant destroy -f
+deploy-libvirt:
+	bash scripts/deploy-libvirt.sh
+
+deploy-vagrant:
+	bash scripts/deploy-vagrant.sh
+
+push-image:
+	docker push $(IMAGE)
+
+.PHONY: deploy-vagrant deploy-libvirt 

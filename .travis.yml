@@ -8,7 +8,7 @@ matrix:
   fast_finish: true
   include:
 
-    - name: "deploy debian-10.4 osquery Python 3.7 on focal amd64"
+    - name: "deploy debian-10.4 buster osquery Python 3.7 on focal amd64"
       dist: focal
       arch: amd64
       language: python

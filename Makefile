@@ -1,3 +1,7 @@
+
+deploy-debian-bento-ubuntu:
+	bash scripts/deploy-debian-bento-ubuntu.sh
+
 deploy-debian-bento-ppc64:
 	bash scripts/deploy-debian-bento-ppc64.sh
 

@@ -17,6 +17,7 @@ echo "==========================================================================
 
 # https://command-not-found.com/yum-config-manager
 dnf install -y yum-utils
+sleep 10
 
 # https://osquery.readthedocs.io/en/stable/installation/install-linux/#installing-osquery
 # https://osquery.io/downloads/official/4.5.1

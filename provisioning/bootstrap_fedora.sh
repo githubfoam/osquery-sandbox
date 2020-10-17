@@ -1,8 +1,20 @@
-#!/usr/bin/env bash
-set -euo pipefail
+#!/bin/bash
+set -o errexit
+set -o pipefail
+set -o nounset
+set -o xtrace
+# set -eox pipefail #safety for script
 
-echo "===================Install ansible================================================================="
-sudo pkg install py36-ansible
+echo "===================================================================================="
+                          hostnamectl status
+echo "===================================================================================="
+echo "         \   ^__^                                                                  "
+echo "          \  (oo)\_______                                                          "
+echo "             (__)\       )\/\                                                      "
+echo "                 ||----w |                                                         "
+echo "                 ||     ||                                                         "
+echo "========================================================================================="
+
 
 # https://osquery.readthedocs.io/en/stable/installation/install-linux/#installing-osquery
 # https://osquery.io/downloads/official/4.5.1

@@ -10,12 +10,14 @@ echo "====================Install osquery=======================================
 # https://www.freebsd.org/doc/handbook/ports-using.html
 # from ports
 # /tmp/vagrant-shell: line 10: cd: /usr/ports/sysutils/osquery: No such file or directory
-portsnap fetch update
-cd /usr/ports/sysutils/osquery && make install clean
+# portsnap fetch update #portsnap fetch should not be run non-interactively.Run portsnap cron instead
+# cd /usr/ports/sysutils/osquery && make install clean
 
 # from binary package
-pkg install osquery
+whoami
+pkg update
+pkg install --yes osquery
 
 # using portmaster
-portmaster sysutils/osquery
+# portmaster sysutils/osquery
 echo "===================================================================================="

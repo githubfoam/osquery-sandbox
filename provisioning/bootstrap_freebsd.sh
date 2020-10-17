@@ -6,12 +6,16 @@ set -euo pipefail
 # sudo pkg install py36-ansible
 # https://osquery.readthedocs.io/en/stable/installation/install-freebsd/
 echo "====================Install osquery================================================================"
+
+# https://www.freebsd.org/doc/handbook/ports-using.html
 # from ports
+# /tmp/vagrant-shell: line 10: cd: /usr/ports/sysutils/osquery: No such file or directory
+portsnap fetch update
 cd /usr/ports/sysutils/osquery && make install clean
 
 # from binary package
-# pkg install osquery
+pkg install osquery
 
 # using portmaster
-# portmaster sysutils/osquery
+portmaster sysutils/osquery
 echo "===================================================================================="

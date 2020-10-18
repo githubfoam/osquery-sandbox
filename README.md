@@ -228,4 +228,9 @@ predefined tables
 <https://osquery.io/schema/4.1.1>
 
 # https://osquery.readthedocs.io/en/stable/installation/install-linux/
+
+https://github.com/google/santa
+https://github.com/groob/moroz
+https://github.com/zentralopensource/zentral
+
 ~~~~

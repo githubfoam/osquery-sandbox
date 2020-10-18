@@ -3,6 +3,15 @@
 
 [![Build Status](https://travis-ci.com/githubfoam/osquery-sandbox.svg?branch=master)](https://travis-ci.com/githubfoam/osquery-sandbox)  
 
+provisioning ansible  
+[![Build Status](https://travis-ci.com/githubfoam/osquery-sandbox.svg?branch=feature_ansible)](https://travis-ci.com/githubfoam/osquery-sandbox) 
+
+provisioning bash - fedora rpm   
+[![Build Status](https://travis-ci.com/githubfoam/osquery-sandbox.svg?branch=feature_provision_bash)](https://travis-ci.com/githubfoam/osquery-sandbox) 
+
+freebsd   
+[![Build Status](https://travis-ci.com/githubfoam/osquery-sandbox.svg?branch=feature_freebsd)](https://travis-ci.com/githubfoam/osquery-sandbox) 
+
 
 ~~~~
 vagrant up

@@ -14,10 +14,10 @@ echo "====================Install osquery=======================================
 # cd /usr/ports/sysutils/osquery && make install clean
 
 # from binary package
-whoami
+# No packages available to install matching 'osquery' have been found in the repositories
 pkg update
 pkg install --yes osquery
 
 # using portmaster
-# portmaster sysutils/osquery
+portmaster sysutils/osquery
 echo "===================================================================================="

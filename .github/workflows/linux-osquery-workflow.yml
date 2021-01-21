@@ -1,0 +1,44 @@
+name: "linux osquery CI workflow"
+
+
+on:
+  push:
+    branches: [ feature_githubactions ]
+  # pull_request:
+  #   branches: [ githubactions_powershell ]
+
+
+jobs:
+
+  ubuntu-job:
+    name: "ubuntu-latest"
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: "os fingerprinting"
+      run: hostnamectl status    
+
+  ubuntu-1604-job:
+    name: "ubuntu-16.04"
+    runs-on: ubuntu-16.04
+    steps:
+    - uses: actions/checkout@v2
+    - name: "os fingerprinting"
+      run: hostnamectl status  
+
+  ubuntu-1804-job:
+    name: "ubuntu-18.04"
+    runs-on: ubuntu-18.04
+    steps:
+    - uses: actions/checkout@v2
+    - name: "os fingerprinting"
+      run: hostnamectl status  
+
+  ubuntu-2004-job:
+    name: "ubuntu-20.04"
+    runs-on: ubuntu-20.04
+    steps:
+    - uses: actions/checkout@v2
+    - name: "os fingerprinting"
+      run: hostnamectl status 
+

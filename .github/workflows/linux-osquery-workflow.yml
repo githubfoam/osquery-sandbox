@@ -17,11 +17,23 @@ jobs:
     - uses: actions/checkout@v2
     - name: "os fingerprinting"
       run: hostnamectl status  
-    - name: "Install vagrant specific version"
+    - name: "Set vagrant specific version"
       run: |
         export VAGRANT_VERSION="2.2.9"
         echo $VAGRANT_VERSION
         sudo apt-get -qq update         
+    - name: "Build Vagrant and Libvirt with KVM or QEMU"
+      run: |
+        sudo apt-get install -y cpu-checker bridge-utils dnsmasq-base ebtables libvirt-bin libvirt-dev qemu-kvm qemu-utils ruby-dev
+        sudo systemctl status libvirtd
+        sudo libvirtd --version
+        #If 0 it means that your CPU doesn't support hardware virtualization.
+        #If 1 or more it does - but you still need to make sure that virtualization is enabled in the BIOS.        
+        egrep -c '(vmx|svm)' /proc/cpuinfo 
+        sudo addgroup libvirtd
+        #ensure that your username is added to the group libvirtd
+        sudo adduser  $(id -un) libvirtd
+        sudo kvm-ok 
 
   # ubuntu-1604-job:
   #   name: "ubuntu-16.04"

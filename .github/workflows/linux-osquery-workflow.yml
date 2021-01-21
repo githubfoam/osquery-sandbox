@@ -21,7 +21,7 @@ jobs:
       run: |
         export VAGRANT_VERSION="2.2.9"
         echo $VAGRANT_VERSION
-        apt-get -qq update         
+        sudo apt-get -qq update         
 
   # ubuntu-1604-job:
   #   name: "ubuntu-16.04"

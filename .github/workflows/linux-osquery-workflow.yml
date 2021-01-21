@@ -11,34 +11,39 @@ on:
 jobs:
 
   ubuntu-job:
-    name: "ubuntu-latest"
+    name: "ubuntu-latest - Ubuntu 18.04.5 LTS"
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
     - name: "os fingerprinting"
-      run: hostnamectl status    
-
-  ubuntu-1604-job:
-    name: "ubuntu-16.04"
-    runs-on: ubuntu-16.04
-    steps:
-    - uses: actions/checkout@v2
-    - name: "os fingerprinting"
       run: hostnamectl status  
+    - name: "Install vagrant specific version"
+      run: |
+        export VAGRANT_VERSION="2.2.9"
+        echo $VAGRANT_VERSION
+        apt-get -qq update         
 
-  ubuntu-1804-job:
-    name: "ubuntu-18.04"
-    runs-on: ubuntu-18.04
-    steps:
-    - uses: actions/checkout@v2
-    - name: "os fingerprinting"
-      run: hostnamectl status  
+  # ubuntu-1604-job:
+  #   name: "ubuntu-16.04"
+  #   runs-on: ubuntu-16.04
+  #   steps:
+  #   - uses: actions/checkout@v2
+  #   - name: "os fingerprinting"
+  #     run: hostnamectl status  
 
-  ubuntu-2004-job:
-    name: "ubuntu-20.04"
-    runs-on: ubuntu-20.04
-    steps:
-    - uses: actions/checkout@v2
-    - name: "os fingerprinting"
-      run: hostnamectl status 
+  # ubuntu-1804-job:
+  #   name: "ubuntu-18.04"
+  #   runs-on: ubuntu-18.04
+  #   steps:
+  #   - uses: actions/checkout@v2
+  #   - name: "os fingerprinting"
+  #     run: hostnamectl status  
+
+  # ubuntu-2004-job:
+  #   name: "ubuntu-20.04"
+  #   runs-on: ubuntu-20.04
+  #   steps:
+  #   - uses: actions/checkout@v2
+  #   - name: "os fingerprinting"
+  #     run: hostnamectl status 
 

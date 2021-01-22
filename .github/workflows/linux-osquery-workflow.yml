@@ -31,7 +31,8 @@ jobs:
         # virtualization is not supported
         # grep: write error: Broken pipe
         # egrep -c '(vmx|svm)' /proc/cpuinfo | echo "virtualization is  supported" | echo "virtualization is not supported"
-        egrep -q 'vmx|svm' /proc/cpuinfo && echo "virtualization is  supported" || echo "virtualization is not supported"
+        egrep -c '(vmx|svm)' /proc/cpuinfo && echo "virtualization is  supported" | echo "virtualization is not supported"
+        # egrep -q 'vmx|svm' /proc/cpuinfo && echo "virtualization is  supported" || echo "virtualization is not supported"
         # sudo addgroup libvirtd
         # sudo adduser  $(id -un) libvirtd
         # sudo kvm-ok 

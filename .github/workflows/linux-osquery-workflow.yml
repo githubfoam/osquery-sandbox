@@ -35,7 +35,7 @@ jobs:
         egrep -q 'vmx|svm' /proc/cpuinfo && echo "virtualization is  supported" || echo "virtualization is not supported"
         sudo addgroup libvirtd
         sudo adduser  $(id -un) libvirtd
-        sudo kvm-ok 
+        sudo kvm-ok >/dev/null
 
   # ubuntu-1604-job:
   #   name: "ubuntu-16.04"

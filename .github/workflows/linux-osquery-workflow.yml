@@ -24,7 +24,7 @@ jobs:
         sudo apt-get -qq update         
     - name: "Build Vagrant and Libvirt with KVM or QEMU"
       run: |
-        sex -x
+        set -x
         sudo apt-get install -y cpu-checker bridge-utils dnsmasq-base ebtables libvirt-bin libvirt-dev qemu-kvm qemu-utils ruby-dev
         sudo systemctl status libvirtd
         sudo libvirtd --version

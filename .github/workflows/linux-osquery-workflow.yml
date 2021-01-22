@@ -27,7 +27,8 @@ jobs:
         sudo apt-get install -y cpu-checker bridge-utils dnsmasq-base ebtables libvirt-bin libvirt-dev qemu-kvm qemu-utils ruby-dev
         sudo systemctl status libvirtd
         sudo libvirtd --version
-        egrep -c '(vmx|svm)' /proc/cpuinfo 
+        # egrep -c '(vmx|svm)' /proc/cpuinfo 
+        egrep -c '(vmx|svm)' /proc/cpuinfo | echo "virtualization is  supported" | echo "virtualization is not supported"
         # sudo addgroup libvirtd
         # sudo adduser  $(id -un) libvirtd
         # sudo kvm-ok 

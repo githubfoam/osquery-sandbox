@@ -24,18 +24,14 @@ jobs:
         sudo apt-get -qq update         
     - name: "Build Vagrant and Libvirt with KVM or QEMU"
       run: |
+        sex -x
         sudo apt-get install -y cpu-checker bridge-utils dnsmasq-base ebtables libvirt-bin libvirt-dev qemu-kvm qemu-utils ruby-dev
         sudo systemctl status libvirtd
         sudo libvirtd --version
-        # egrep -c '(vmx|svm)' /proc/cpuinfo 
-        # virtualization is not supported
-        # grep: write error: Broken pipe
-        # egrep -c '(vmx|svm)' /proc/cpuinfo | echo "virtualization is  supported" | echo "virtualization is not supported"
-        # egrep -c '(vmx|svm)' /proc/cpuinfo && echo "virtualization is  supported" || echo "virtualization is not supported"
         egrep -q 'vmx|svm' /proc/cpuinfo && echo "virtualization is  supported" || echo "virtualization is not supported"
         sudo addgroup libvirtd
         sudo adduser  $(id -un) libvirtd
-        sudo kvm-ok >/dev/null 2>&1
+        sudo kvm-ok 
 
   # ubuntu-1604-job:
   #   name: "ubuntu-16.04"

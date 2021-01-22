@@ -28,7 +28,10 @@ jobs:
         sudo systemctl status libvirtd
         sudo libvirtd --version
         # egrep -c '(vmx|svm)' /proc/cpuinfo 
-        egrep -c '(vmx|svm)' /proc/cpuinfo | echo "virtualization is  supported" | echo "virtualization is not supported"
+        # virtualization is not supported
+        # grep: write error: Broken pipe
+        # egrep -c '(vmx|svm)' /proc/cpuinfo | echo "virtualization is  supported" | echo "virtualization is not supported"
+        egrep -q 'vmx|svm' /proc/cpuinfo && echo yes || echo no
         # sudo addgroup libvirtd
         # sudo adduser  $(id -un) libvirtd
         # sudo kvm-ok 

@@ -17,15 +17,16 @@ jobs:
     - uses: actions/checkout@v2
     - name: "os fingerprinting"
       run: hostnamectl status  
-    - name: "Set vagrant specific version"
-      run: |
-        set -x
-        export VAGRANT_VERSION="2.2.14"
-        echo $VAGRANT_VERSION
-        sudo apt-get -qq update         
+    # - name: "Set vagrant specific version"
+    #   run: |
+    #     set -x
+    #     export VAGRANT_VERSION="2.2.14"
+    #     echo $VAGRANT_VERSION
+    #     sudo apt-get -qq update         
     - name: "Build Vagrant and Libvirt with KVM or QEMU"
       run: |
         set -x
+        sudo apt-get -qq update
         sudo apt-get install -y cpu-checker bridge-utils dnsmasq-base ebtables libvirt-bin libvirt-dev qemu-kvm qemu-utils ruby-dev
         sudo systemctl status libvirtd
         sudo libvirtd --version
@@ -33,11 +34,13 @@ jobs:
         sudo addgroup libvirtd
         sudo adduser  $(id -un) libvirtd
         sudo kvm-ok || true  
-    - name: "Install Vagrant from deb package"
+    - name: "Set vagrant specific version and install Vagrant from deb package"
       run: |
         set -x
         echo "============================================="
         echo "=============Installing Vagrant=============="
+        export VAGRANT_VERSION="2.2.14"
+        echo $VAGRANT_VERSION
         sudo wget -nv https://releases.hashicorp.com/vagrant/${VAGRANT_VERSION}/vagrant_${VAGRANT_VERSION}_x86_64.deb        
         sudo dpkg -i vagrant_${VAGRANT_VERSION}_x86_64.deb
         # sudo wget -nv https://releases.hashicorp.com/vagrant/2.2.14/vagrant_2.2.14_x86_64.deb

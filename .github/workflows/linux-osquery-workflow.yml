@@ -71,13 +71,17 @@ jobs:
         sudo vagrant mutate "bento/debian-10.1" libvirt
         vagrant box list #veridy installed boxes
         vagrant status #Check the status of the VMs to see that none of them have been created yet
-    - name: "Install vagrant boxes bento "
-      run: |
-        set -x
         sudo vagrant up --provider=libvirt vg-osquery-01
         sudo vagrant status
         sudo vagrant global-status
-        sudo virsh list --all #show all running KVM/libvirt VMs
+        sudo virsh list --all #show all running KVM/libvirt VMs        
+    # - name: "Install vagrant boxes bento "
+    #   run: |
+    #     set -x
+    #     sudo vagrant up --provider=libvirt vg-osquery-01
+    #     sudo vagrant status
+    #     sudo vagrant global-status
+    #     sudo virsh list --all #show all running KVM/libvirt VMs
 
 
   # ubuntu-1604-job:

@@ -20,7 +20,7 @@ jobs:
     - name: "Set vagrant specific version"
       run: |
         set -x
-        export VAGRANT_VERSION="2.2.9"
+        export VAGRANT_VERSION="2.2.14"
         echo $VAGRANT_VERSION
         sudo apt-get -qq update         
     - name: "Build Vagrant and Libvirt with KVM or QEMU"
@@ -33,17 +33,45 @@ jobs:
         sudo addgroup libvirtd
         sudo adduser  $(id -un) libvirtd
         sudo kvm-ok || true  
-    - name: "Installing Vagrant from deb package"
+    - name: "Install Vagrant from deb package"
       run: |
         set -x
         echo "============================================="
         echo "=============Installing Vagrant=============="
-        # sudo wget -nv https://releases.hashicorp.com/vagrant/${VAGRANT_VERSION}/vagrant_${VAGRANT_VERSION}_x86_64.deb
-        sudo wget -nv https://releases.hashicorp.com/vagrant/2.2.14/vagrant_2.2.14_x86_64.deb
-        # sudo dpkg -i vagrant_${VAGRANT_VERSION}_x86_64.deb
-        sudo dpkg -i vagrant_2.2.14_x86_64.deb
+        sudo wget -nv https://releases.hashicorp.com/vagrant/${VAGRANT_VERSION}/vagrant_${VAGRANT_VERSION}_x86_64.deb        
+        sudo dpkg -i vagrant_${VAGRANT_VERSION}_x86_64.deb
+        # sudo wget -nv https://releases.hashicorp.com/vagrant/2.2.14/vagrant_2.2.14_x86_64.deb
+        # sudo dpkg -i vagrant_2.2.14_x86_64.deb
         vagrant version
         echo "============================================="
+    - name: "Install libvirt vagrant-mutate plugins"
+      run: |
+        set -x
+        sudo vagrant plugin install vagrant-libvirt #The vagrant-libvirt plugin is required when using KVM on Linux
+        sudo vagrant plugin install vagrant-mutate #Convert vagrant boxes to work with different providers
+        sudo vagrant status
+        sudo virsh list --all #show all running KVM/libvirt VMs
+    - name: "Install vagrant boxes bento "
+      run: |
+        set -x
+        sudo vagrant box add "bento/ubuntu-19.10" --provider=virtualbox
+        sudo vagrant mutate "bento/ubuntu-19.10" libvirt
+        sudo vagrant box add "bento/centos-7.7" --provider=virtualbox
+        sudo vagrant mutate "bento/centos-7.7" libvirt
+        sudo vagrant box add "bento/fedora-31" --provider=virtualbox
+        sudo vagrant mutate "bento/fedora-31" libvirt
+        sudo vagrant box add "bento/debian-10.1" --provider=virtualbox
+        sudo vagrant mutate "bento/debian-10.1" libvirt
+        vagrant box list #veridy installed boxes
+        vagrant status #Check the status of the VMs to see that none of them have been created yet
+    - name: "Install vagrant boxes bento "
+      run: |
+        set -x
+        sudo vagrant up --provider=libvirt vg-osquery-01
+        sudo vagrant status
+        sudo vagrant global-status
+        sudo virsh list --all #show all running KVM/libvirt VMs
+
 
   # ubuntu-1604-job:
   #   name: "ubuntu-16.04"

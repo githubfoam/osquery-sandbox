@@ -19,6 +19,7 @@ jobs:
       run: hostnamectl status  
     - name: "Set vagrant specific version"
       run: |
+        set -x
         export VAGRANT_VERSION="2.2.9"
         echo $VAGRANT_VERSION
         sudo apt-get -qq update         
@@ -32,7 +33,16 @@ jobs:
         sudo addgroup libvirtd
         sudo adduser  $(id -un) libvirtd
         sudo kvm-ok || true  
-
+    - name: "Installing Vagrant from deb package"
+      run: |
+        set -x
+        echo "============================================="
+        echo "=============Installing Vagrant=============="
+        sudo wget -nv https://releases.hashicorp.com/vagrant/${VAGRANT_VERSION}/vagrant_${VAGRANT_VERSION}_x86_64.deb
+        sudo dpkg -i vagrant_${VAGRANT_VERSION}_x86_64.deb
+        vagrant version
+        echo "============================================="
+        
   # ubuntu-1604-job:
   #   name: "ubuntu-16.04"
   #   runs-on: ubuntu-16.04

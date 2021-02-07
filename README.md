@@ -1,5 +1,6 @@
 # osquery cti,dfir
 
+![ubuntu osquery CI workflow](https://github.com/githubfoam/osquery-sandbox/workflows/ubuntu%20osquery%20CI%20workflow/badge.svg?branch=master)  
 
 [![Build Status](https://travis-ci.com/githubfoam/osquery-sandbox.svg?branch=master)](https://travis-ci.com/githubfoam/osquery-sandbox)  
 

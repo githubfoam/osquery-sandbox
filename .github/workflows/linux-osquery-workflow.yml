@@ -148,7 +148,7 @@ jobs:
   #       sudo osqueryctl status osqueryd
 
   ubuntu-2004-job:
-    name: "osquery on ubuntu-20.04"
+    name: "process accounting on ubuntu-20.04"
     runs-on: ubuntu-20.04
     steps:
     - uses: actions/checkout@v2
@@ -161,6 +161,36 @@ jobs:
         set -o nounset
         set -o xtrace
         echo "=============process accounting on Linux=============="
-        sudo /usr/sbin/accton on
-        sudo dump-acct /var/log/account/pacct | tail
+        sudo apt-get update -qq
+        sudo apt-get install acct -qqy
+        whoami
+        # sudo /usr/sbin/accton on
+        # sudo dump-acct /var/log/account/pacct | tail
 
+  ubuntu-2004-python3x-job:
+    name: "Setting Up Python 3x on ubuntu-20.04"
+    runs-on: ubuntu-20.04
+    steps:
+    - uses: actions/checkout@v2
+    - name: "os fingerprinting"
+      run: hostnamectl status 
+    - name: "Install osquery "
+      run: |
+        set -o errexit
+        set -o pipefail
+        set -o nounset
+        set -o xtrace
+        echo "=============Setting Up Python 3x=============="
+        sudo apt-get update -qq
+        python3 -V
+        whoami
+        echo "=============Setting Up a Virtual Environment=="
+        sudo apt-get install -qqy python3-venv
+        mkdir environments && cd environments
+        python3 -m venv my_env
+        ls my_env
+        source my_env/bin/activate
+        echo "=============Setting Up Python 3x=============="
+        python2 -V        
+        # sudo /usr/sbin/accton on
+        # sudo dump-acct /var/log/account/pacct | tail

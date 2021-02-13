@@ -176,10 +176,10 @@ jobs:
         sudo sa -m # averages for the all the activity for this server overtime        
     - name: "Show  sum of the system and user time in cpu minutes for specific commands"
       run: |
-        set -o errexit
-        set -o pipefail
-        set -o nounset
-        set -o xtrace      
+        # set -o errexit
+        # set -o pipefail
+        # set -o nounset
+        # set -o xtrace      
         sudo sa -u | grep runner # averages for the all the activity for this server overtime        
         #combined total for a specific user
         sudo sa -u |grep username|awk ‘BEGIN{TOTAL=0}{TOTAL=TOTAL+$2}END{print TOTAL}’
@@ -217,6 +217,40 @@ jobs:
         source my_env/bin/activate
         echo "=============Setting Up Python 2x=============="
         python2 -V        
+    - name: "Setting Up Python 2x virtual environment"
+      run: |
+        set -o errexit
+        set -o pipefail
+        set -o nounset
+        set -o xtrace
+        echo "=============Setting Up Python 2x=============="
+        sudo apt-get update -qq
+        python2 -V
+        echo "=============Setting Up Python 2x Virtual Environment=="
+        pip install virtualenv
+        mkdir environments && cd environments
+        virtualenv -p $(which python2) ~venvpy2
+        source ~venvpy2/bin/activate
+        python --version
+        # pip install -r requirements.txt
+    - name: "Setting Up Python 3x virtual environment"
+      run: |
+        set -o errexit
+        set -o pipefail
+        set -o nounset
+        set -o xtrace
+        echo "=============Setting Up Python 3x=============="
+        sudo apt-get update -qq
+        python2 -V
+        echo "=============Setting Up Python 3x Virtual Environment=="
+        pip3 install virtualenv
+        mkdir environments && cd environments
+        virtualenv -p $(which python3) ~venvpy3
+        source ~venvpy3/bin/activate
+        python --version
+        python2 -V
+        python3 -V
+        # pip install -r requirements.txt                 
     - name: "Setting Up Python 3x virtual environment"
       run: |
         set -o errexit
@@ -226,10 +260,13 @@ jobs:
         echo "=============Setting Up Python 3x=============="
         sudo apt-get update -qq
         python3 -V
-        echo "=============Setting Up a Virtual Environment=="
-        sudo apt-get install -qqy python3-venv
+        echo "=============Setting Up Python 3x Virtual Environment=="
+        pip3 install virtualenv
         mkdir environments && cd environments
         virtualenv .virtualenv
         . .virtualenv/bin/activate
+        python --version
+        python2 -V
+        python3 -V        
         # pip install -r requirements.txt
          

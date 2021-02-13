@@ -205,11 +205,9 @@ jobs:
         set -o pipefail
         set -o nounset
         set -o xtrace
-        echo "=============Setting Up Python 3x=============="
+        echo "=============Setting Up a Python 3x Virtual Environment=="
         sudo apt-get update -qq
-        python3 -V
         whoami
-        echo "=============Setting Up a Virtual Environment=="
         python --version
         python -V
         python3 -V
@@ -238,7 +236,7 @@ jobs:
         sudo apt-get update -qq
         python2 -V
         echo "=============Setting Up Python 3x Virtual Environment=="
-        pip3 install virtualenv
+        sudo pip3 install virtualenv
         mkdir environments && cd environments
         virtualenv -p $(which python3) ~venvpy3
         source ~venvpy3/bin/activate
@@ -256,7 +254,7 @@ jobs:
         sudo apt-get update -qq
         python3 -V
         echo "=============Setting Up Python 3x Virtual Environment=="
-        pip3 install virtualenv
+        sudo pip3 install virtualenv
         mkdir environments && cd environments
         virtualenv .virtualenv
         . .virtualenv/bin/activate
@@ -274,7 +272,7 @@ jobs:
         sudo apt-get update -qq
         python2 -V
         echo "=============Setting Up Python 2x Virtual Environment=="
-        pip install virtualenv
+        sudo pip install virtualenv
         mkdir environments && cd environments
         virtualenv -p $(which python2) ~venvpy2
         source ~venvpy2/bin/activate

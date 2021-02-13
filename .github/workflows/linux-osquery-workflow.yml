@@ -154,7 +154,7 @@ jobs:
     - uses: actions/checkout@v2
     - name: "os fingerprinting"
       run: hostnamectl status 
-    - name: "Install osquery "
+    - name: "Install process accounting "
       run: |
         set -o errexit
         set -o pipefail
@@ -163,9 +163,34 @@ jobs:
         echo "=============process accounting on Linux=============="
         sudo apt-get update -qq
         sudo apt-get install acct -qqy
-        whoami
+        whoami #runner
+        sudo sa -m # averages for the all the activity for this server overtime        
         # sudo /usr/sbin/accton on
         # sudo dump-acct /var/log/account/pacct | tail
+    - name: "Show averages for the all the activity for this server overtime"
+      run: |
+        set -o errexit
+        set -o pipefail
+        set -o nounset
+        set -o xtrace      
+        sudo sa -m # averages for the all the activity for this server overtime        
+    - name: "Show  sum of the system and user time in cpu minutes for specific commands"
+      run: |
+        set -o errexit
+        set -o pipefail
+        set -o nounset
+        set -o xtrace      
+        sudo sa -u | grep runner # averages for the all the activity for this server overtime        
+        #combined total for a specific user
+        sudo sa -u |grep username|awk ‘BEGIN{TOTAL=0}{TOTAL=TOTAL+$2}END{print TOTAL}’
+    - name: "Show each of the programs"
+      run: |
+        set -o errexit
+        set -o pipefail
+        set -o nounset
+        set -o xtrace      
+        sudo sa -a
+
 
   ubuntu-2004-python3x-job:
     name: "Setting Up Python 3x on ubuntu-20.04"
@@ -174,7 +199,7 @@ jobs:
     - uses: actions/checkout@v2
     - name: "os fingerprinting"
       run: hostnamectl status 
-    - name: "Install osquery "
+    - name: "Setting Up Python 3x virtual environment"
       run: |
         set -o errexit
         set -o pipefail
@@ -190,7 +215,21 @@ jobs:
         python3 -m venv my_env
         ls my_env
         source my_env/bin/activate
-        echo "=============Setting Up Python 3x=============="
+        echo "=============Setting Up Python 2x=============="
         python2 -V        
-        # sudo /usr/sbin/accton on
-        # sudo dump-acct /var/log/account/pacct | tail
+    - name: "Setting Up Python 3x virtual environment"
+      run: |
+        set -o errexit
+        set -o pipefail
+        set -o nounset
+        set -o xtrace
+        echo "=============Setting Up Python 3x=============="
+        sudo apt-get update -qq
+        python3 -V
+        echo "=============Setting Up a Virtual Environment=="
+        sudo apt-get install -qqy python3-venv
+        mkdir environments && cd environments
+        virtualenv .virtualenv
+        . .virtualenv/bin/activate
+        # pip install -r requirements.txt
+         

@@ -182,7 +182,7 @@ jobs:
         # set -o xtrace      
         sudo sa -u | grep runner # averages for the all the activity for this server overtime        
         #combined total for a specific user
-        sudo sa -u |grep username|awk ‘BEGIN{TOTAL=0}{TOTAL=TOTAL+$2}END{print TOTAL}’
+        #sudo sa -u |grep username|awk ‘BEGIN{TOTAL=0}{TOTAL=TOTAL+$2}END{print TOTAL}’
     - name: "Show each of the programs"
       run: |
         set -o errexit
@@ -210,29 +210,24 @@ jobs:
         python3 -V
         whoami
         echo "=============Setting Up a Virtual Environment=="
+        python --version
+        python -V
+        python3 -V
+        python2 -V
         sudo apt-get install -qqy python3-venv
         mkdir environments && cd environments
         python3 -m venv my_env
         ls my_env
         source my_env/bin/activate
-        echo "=============Setting Up Python 2x=============="
-        python2 -V        
-    - name: "Setting Up Python 2x virtual environment"
-      run: |
-        set -o errexit
-        set -o pipefail
-        set -o nounset
-        set -o xtrace
-        echo "=============Setting Up Python 2x=============="
-        sudo apt-get update -qq
-        python2 -V
-        echo "=============Setting Up Python 2x Virtual Environment=="
-        pip install virtualenv
-        mkdir environments && cd environments
-        virtualenv -p $(which python2) ~venvpy2
-        source ~venvpy2/bin/activate
         python --version
-        # pip install -r requirements.txt
+        python -V
+        python3 -V
+        python2 -V
+        deactivate
+        python --version
+        python -V
+        python3 -V
+        python2 -V       
     - name: "Setting Up Python 3x virtual environment"
       run: |
         set -o errexit
@@ -269,4 +264,19 @@ jobs:
         python2 -V
         python3 -V        
         # pip install -r requirements.txt
-         
+    - name: "Setting Up Python 2x virtual environment"
+      run: |
+        set -o errexit
+        set -o pipefail
+        set -o nounset
+        set -o xtrace
+        echo "=============Setting Up Python 2x=============="
+        sudo apt-get update -qq
+        python2 -V
+        echo "=============Setting Up Python 2x Virtual Environment=="
+        pip install virtualenv
+        mkdir environments && cd environments
+        virtualenv -p $(which python2) ~venvpy2
+        source ~venvpy2/bin/activate
+        python --version
+        # pip install -r requirements.txt         

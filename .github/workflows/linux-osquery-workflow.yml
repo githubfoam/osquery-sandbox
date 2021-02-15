@@ -247,6 +247,154 @@ jobs:
         python3 -V
         python2 -V    
 
+  ubuntu-2004-python3x-PPA-job:
+    name: "Setting Up Python 3x on ubuntu-20.04"
+    runs-on: ubuntu-20.04
+    steps:
+    - uses: actions/checkout@v2
+    - name: "os fingerprinting"
+      run: hostnamectl status  
+    - name: "Setting Up Python 3x virtual environment (.virtualenv)"
+      run: |
+        set -o errexit
+        set -o pipefail
+        set -o nounset
+        set -o xtrace
+        echo "=============Setting Up Python 3x Virtual Environment=="
+        sudo apt-get update -qq
+        python --version
+        python2 -V
+        python3 -V
+        sudo pip3 install virtualenv
+        virtualenv .virtualenv
+        . .virtualenv/bin/activate
+        python --version
+        python -V
+        python3 -V
+        python2 -V        
+        pip install -r requirements.txt
+        echo "=============Add Deadsnakes PPA============="
+        sudo add-apt-repository ppa:deadsnakes/ppa
+        sudo apt-get update -qq
+        sudo apt-get install python3.8 -qqy
+        python ––version
+        python -V
+        python3 -V
+        python2 -V   
+        echo "=============Add Deadsnakes PPA============="   
+        deactivate
+        python --version
+        python -V
+        python3 -V
+        python2 -V 
+
+  ubuntu-2004-python3x-source-job:
+    name: "Setting Up Python 3x on ubuntu-20.04"
+    runs-on: ubuntu-20.04
+    steps:
+    - uses: actions/checkout@v2
+    - name: "os fingerprinting"
+      run: hostnamectl status  
+    - name: "Setting Up Python 3x virtual environment (.virtualenv)"
+      run: |
+        set -o errexit
+        set -o pipefail
+        set -o nounset
+        set -o xtrace
+        echo "=============Setting Up Python 3x Virtual Environment=="
+        sudo apt-get update -qq
+        python --version
+        python2 -V
+        python3 -V
+        sudo pip3 install virtualenv
+        virtualenv .virtualenv
+        . .virtualenv/bin/activate
+        python --version
+        python -V
+        python3 -V
+        python2 -V        
+        pip install -r requirements.txt
+        echo "=============Install Python 3.8 From Source Code============="
+        #Step 1: Update Local Repositories
+        sudo apt-get update -qq
+        #Step 2: Install Supporting Software
+        sudo apt-get install build-essential zlib1g-dev libncurses5-dev libgdbm-dev libnss3-dev libssl-dev libreadline-dev libffi-dev wget -qqy
+        #Step 3: Download the Latest Version of Python Source Code
+        wget https://www.python.org/ftp/python/3.8.3/Python-3.8.3.tgz
+        #Step 4: Extract Compressed Files
+        tar –xf Python-3.8.3.tgz
+        #Step 5: Test System and Optimize Python
+        cd python-3.8.3
+        #evaluates and prepares Python to install 
+        #Using the ––optimization option speeds code execution by 10-20%
+        ./configure ––enable–optimizations
+        #Step 6: Install a Second Instance of Python (recommended)
+        #create a second installation of Python 3.835, in addition to current Python installation,
+        sudo make altinstall
+        python ––version
+        python -V
+        python3 -V
+        python2 -V   
+        echo "=============Install Python 3.8 From Source Code=============" 
+        deactivate
+        python --version
+        python -V
+        python3 -V
+        python2 -V 
+
+  ubuntu-2004-python3x-source-overwrite-job:
+    name: "Setting Up Python 3x on ubuntu-20.04"
+    runs-on: ubuntu-20.04
+    steps:
+    - uses: actions/checkout@v2
+    - name: "os fingerprinting"
+      run: hostnamectl status  
+    - name: "Setting Up Python 3x virtual environment (.virtualenv)"
+      run: |
+        set -o errexit
+        set -o pipefail
+        set -o nounset
+        set -o xtrace
+        echo "=============Setting Up Python 3x Virtual Environment=="
+        sudo apt-get update -qq
+        python --version
+        python2 -V
+        python3 -V
+        sudo pip3 install virtualenv
+        virtualenv .virtualenv
+        . .virtualenv/bin/activate
+        python --version
+        python -V
+        python3 -V
+        python2 -V        
+        pip install -r requirements.txt
+        echo "=============Install Python 3.8 From Source Code============="
+        #Step 1: Update Local Repositories
+        sudo apt-get update -qq
+        #Step 2: Install Supporting Software
+        sudo apt-get install build-essential zlib1g-dev libncurses5-dev libgdbm-dev libnss3-dev libssl-dev libreadline-dev libffi-dev wget -qqy
+        #Step 3: Download the Latest Version of Python Source Code
+        wget https://www.python.org/ftp/python/3.8.3/Python-3.8.3.tgz
+        #Step 4: Extract Compressed Files
+        tar –xf Python-3.8.3.tgz
+        #Step 5: Test System and Optimize Python
+        cd python-3.8.3
+        #evaluates and prepares Python to install 
+        #Using the ––optimization option speeds code execution by 10-20%
+        ./configure ––enable–optimizations        
+        #Overwrite Default Python Installation 
+        sudo make install
+        python ––version
+        python -V
+        python3 -V
+        python2 -V   
+        echo "=============Install Python 3.8 From Source Code=============" 
+        deactivate
+        python --version
+        python -V
+        python3 -V
+        python2 -V 
+
   ubuntu-2004-python2x-job_0:
     name: "Setting Up Python 2x on ubuntu-20.04"
     runs-on: ubuntu-20.04

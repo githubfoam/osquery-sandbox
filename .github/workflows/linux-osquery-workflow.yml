@@ -147,14 +147,14 @@ jobs:
   #       sudo osqueryctl start osqueryd
   #       sudo osqueryctl status osqueryd
 
-  ubuntu-2004-python3x-job:
+  ubuntu-2004-python3x-job_0:
     name: "Setting Up Python 3x on ubuntu-20.04"
     runs-on: ubuntu-20.04
     steps:
     - uses: actions/checkout@v2
     - name: "os fingerprinting"
       run: hostnamectl status 
-    - name: "Setting Up Python 3x virtual environment method 1"
+    - name: "Setting Up Python 3x virtual environment (python3-venv)"
       run: |
         set -o errexit
         set -o pipefail
@@ -181,8 +181,16 @@ jobs:
         python --version
         python -V
         python3 -V
-        python2 -V       
-    - name: "Setting Up Python 3x virtual environment method 2"
+        python2 -V   
+
+  ubuntu-2004-python3x-job_1:
+    name: "Setting Up Python 3x on ubuntu-20.04"
+    runs-on: ubuntu-20.04
+    steps:
+    - uses: actions/checkout@v2
+    - name: "os fingerprinting"
+      run: hostnamectl status             
+    - name: "Setting Up Python 3x virtual environment (source virtualenv)"
       run: |
         set -o errexit
         set -o pipefail
@@ -195,7 +203,6 @@ jobs:
         python3 -V
         python2 -V
         sudo pip3 install virtualenv
-        mkdir environments && cd environments
         virtualenv -p $(which python3) ~venvpy3
         source ~venvpy3/bin/activate
         python --version
@@ -206,8 +213,16 @@ jobs:
         python --version
         python -V
         python3 -V
-        python2 -V                           
-    - name: "Setting Up Python 3x virtual environment method 3"
+        python2 -V   
+
+  ubuntu-2004-python3x-job_2:
+    name: "Setting Up Python 3x on ubuntu-20.04"
+    runs-on: ubuntu-20.04
+    steps:
+    - uses: actions/checkout@v2
+    - name: "os fingerprinting"
+      run: hostnamectl status  
+    - name: "Setting Up Python 3x virtual environment (.virtualenv)"
       run: |
         set -o errexit
         set -o pipefail
@@ -219,7 +234,6 @@ jobs:
         python2 -V
         python3 -V
         sudo pip3 install virtualenv
-        mkdir environments && cd environments
         virtualenv .virtualenv
         . .virtualenv/bin/activate
         python --version
@@ -231,8 +245,16 @@ jobs:
         python --version
         python -V
         python3 -V
-        python2 -V        
-    - name: "Setting Up Python 2x virtual environment method 1"
+        python2 -V    
+
+  ubuntu-2004-python2x-job_0:
+    name: "Setting Up Python 3x on ubuntu-20.04"
+    runs-on: ubuntu-20.04
+    steps:
+    - uses: actions/checkout@v2
+    - name: "os fingerprinting"
+      run: hostnamectl status 
+    - name: "Setting Up Python 2x virtual environment (virtualenv)"
       run: |
         set -o errexit
         set -o pipefail
@@ -245,7 +267,6 @@ jobs:
         python3 -V
         python2 -V 
         sudo pip install virtualenv
-        mkdir environments && cd environments
         virtualenv -p $(which python2) ~venvpy2
         source ~venvpy2/bin/activate
         python --version

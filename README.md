@@ -10,7 +10,11 @@ provisioning bash - fedora rpm
 [![Build Status](https://travis-ci.com/githubfoam/osquery-sandbox.svg?branch=feature_provision_bash)](https://travis-ci.com/githubfoam/osquery-sandbox) 
 
 freebsd   
-[![Build Status](https://travis-ci.com/githubfoam/osquery-sandbox.svg?branch=feature_freebsd)](https://travis-ci.com/githubfoam/osquery-sandbox) 
+[![Build Status](https://travis-ci.com/githubfoam/osquery-sandbox.svg?branch=feature_freebsd)](https://travis-ci.com/githubfoam/osquery-sandbox)  
+
+choco install osquery  
+https://chocolatey.org/packages/osquery/  
+https://osquery.io/  
 
 
 ~~~~

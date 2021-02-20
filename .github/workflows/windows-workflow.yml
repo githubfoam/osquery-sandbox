@@ -1,5 +1,5 @@
 
-name: "windows CI workflow"
+name: "windows osquery CI workflow"
 
 on:
   push:
@@ -72,29 +72,29 @@ jobs:
       run: sc query type= service state= active 
     - name: "List both the Display and Service name for inactive services" 
       run: sc query type= service state= inactive            
-    - name: "Verify osquery service" 
-      run: Get-Service osqueryd
-      shell: pwsh     
-    #https://osquery.readthedocs.io/en/stable/installation/install-windows/#running-osquery    
-    - name: "Running osquery using Powershell" 
-      run: Start-Service osqueryd
-      shell: pwsh                             
-    - name: "check if server is virtual"
-      run: Systeminfo | findstr /i model   
-    - name: "check the PROCESSOR_ARCHITECTURE environment variable.64-bit systems will say AMD64 and 32-bit systems should say x86"
-      run: wmic OS get OSArchitecture     
-    - name: "osfingerprinting"
-      run: systeminfo | more  
-    - name: "display all processes, executable path"
-      run: wmic process list full         
-    - name: "list of running services"
-      run: tasklist         
-    - name: "list of all processes along with their corresponding PID, and services that are tied to them"
-      run: tasklist /svc  
-    - name: "look for unusual services"
-      run: net start                       
-    - name: "query unusual services"
-      run: sc query 
+    # - name: "Verify osquery service" 
+    #   run: Get-Service osqueryd
+    #   shell: pwsh     
+    # #https://osquery.readthedocs.io/en/stable/installation/install-windows/#running-osquery    
+    # - name: "Running osquery using Powershell" 
+    #   run: Start-Service osqueryd
+    #   shell: pwsh                             
+    # - name: "check if server is virtual"
+    #   run: Systeminfo | findstr /i model   
+    # - name: "check the PROCESSOR_ARCHITECTURE environment variable.64-bit systems will say AMD64 and 32-bit systems should say x86"
+    #   run: wmic OS get OSArchitecture     
+    # - name: "osfingerprinting"
+    #   run: systeminfo | more  
+    # - name: "display all processes, executable path"
+    #   run: wmic process list full         
+    # - name: "list of running services"
+    #   run: tasklist         
+    # - name: "list of all processes along with their corresponding PID, and services that are tied to them"
+    #   run: tasklist /svc  
+    # - name: "look for unusual services"
+    #   run: net start                       
+    # - name: "query unusual services"
+    #   run: sc query 
 
      
   # windows-2016-cmd-osquery:

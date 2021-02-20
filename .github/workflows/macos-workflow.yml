@@ -1,11 +1,11 @@
 
 
-name: "macOS CI workflow"
+name: "macOS osquery CI workflow"
 
 
 on:
   push:
-    branches: [ test ]
+    branches: [ feature_githubactions ]
 
 
 

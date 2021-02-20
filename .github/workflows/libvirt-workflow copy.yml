@@ -31,7 +31,7 @@ jobs:
         sudo systemctl status libvirtd
         sudo libvirtd --version
         egrep -q 'vmx|svm' /proc/cpuinfo && echo "virtualization is  supported" || echo "virtualization is not supported"
-        sudo addgroup libvirtd
+        sudo addgroup libvirtd 
         sudo adduser  $(id -un) libvirtd
         sudo kvm-ok || true  
     - name: "Set vagrant specific version and install Vagrant from deb package"
@@ -105,7 +105,7 @@ jobs:
         sudo systemctl status libvirtd
         sudo libvirtd --version
         egrep -q 'vmx|svm' /proc/cpuinfo && echo "virtualization is  supported" || echo "virtualization is not supported"
-        sudo addgroup libvirtd
+        # sudo addgroup libvirtd #addgroup: The group `libvirtd' already exists.
         sudo adduser  $(id -un) libvirtd
         sudo kvm-ok || true  
     - name: "Set vagrant specific version and install Vagrant from deb package"
@@ -157,26 +157,15 @@ jobs:
     #     sudo vagrant global-status
     #     sudo virsh list --all #show all running KVM/libvirt VMs
 
-  # ubuntu-1804-job:
-  #   name: "osquery onubuntu-18.04"
-  #   runs-on: ubuntu-18.04
-  #   steps:
-  #   - uses: actions/checkout@v2
-  #   - name: "os fingerprinting"
-  #     run: hostnamectl status  
-  #   - name: "Install osquery "
-  #     run: |
-  #       set -o errexit
-  #       set -o pipefail
-  #       set -o nounset
-  #       set -o xtrace
-  #       echo "=============Installing Osquery debian arm64=============="
-  #       export OSQUERY_KEY=1484120AC4E9F8A1A577AEEE97A80C63C9D8B80B
-  #       sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys $OSQUERY_KEY
-  #       sudo add-apt-repository 'deb [arch=amd64] https://pkg.osquery.io/deb deb main'
-  #       sudo apt-get update -qq && sudo apt-get install osquery -qqy
-  #       sudo osqueryctl start osqueryd
-  #       sudo osqueryctl status osqueryd
+  ubuntu-1804-job:
+    name: "osquery onubuntu-18.04"
+    runs-on: ubuntu-18.04
+    steps:
+    - uses: actions/checkout@v2
+    - name: "os fingerprinting"
+      run: hostnamectl status  
+    - name: "Deploy vagrant latest"
+      run: make deploy-vagrant
 
   ubuntu-2004-job:
     name: "osquery on ubuntu-20.04"
@@ -199,7 +188,7 @@ jobs:
         sudo systemctl status libvirtd
         sudo libvirtd --version
         egrep -q 'vmx|svm' /proc/cpuinfo && echo "virtualization is  supported" || echo "virtualization is not supported"
-        sudo addgroup libvirtd
+        # sudo addgroup libvirtd #addgroup: The group `libvirtd' already exists.
         sudo adduser  $(id -un) libvirtd
         sudo kvm-ok || true  
     - name: "Set vagrant specific version and install Vagrant from deb package"

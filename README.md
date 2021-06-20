@@ -243,4 +243,7 @@ https://github.com/google/santa
 https://github.com/groob/moroz
 https://github.com/zentralopensource/zentral
 
+osquery packs
+https://github.com/osquery/osquery/tree/master/packs
+
 ~~~~

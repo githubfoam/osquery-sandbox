@@ -1,0 +1,165 @@
+
+name: "Osquery CI workflow"
+
+on:
+  push:
+    branches: [ test ]
+
+
+jobs:
+
+
+  # windows-latest-cmd-osquery:
+  #   name: "windows-latest Microsoft Windows Server 2019 Datacenter cmd"  
+  #   runs-on: windows-latest
+  #   steps:
+  #   - name: Checkout
+  #     uses: actions/checkout@v1
+  #     #https://chocolatey.org/packages/osquery/
+  #   - name: "Install osquery - command line" 
+  #     run: choco install --yes --no-progress --virus-check osquery  
+  #   - name: "Close/reopen your shell to see the changes" 
+  #     run: refreshenv
+  #     shell: cmd         
+  #   - name: "Close/reopen your shell to see the changes" 
+  #     run: |
+  #         refreshenv
+  #         sc.exe start osqueryd
+  #     shell: cmd         
+    #https://osquery.readthedocs.io/en/stable/installation/install-windows/#running-osquery
+    # - name: "Running osquery using cmd.exe" 
+    #   run: sc.exe start osqueryd
+    #   shell: cmd               
+    # - name: "check if server is virtual"
+    #   run: Systeminfo | findstr /i model   
+    # - name: "check the PROCESSOR_ARCHITECTURE environment variable.64-bit systems will say AMD64 and 32-bit systems should say x86"
+    #   run: wmic OS get OSArchitecture     
+    # - name: "osfingerprinting"
+    #   run: systeminfo | more  
+    # - name: "display all processes, executable path"
+    #   run: wmic process list full         
+    # - name: "list of running services"
+    #   run: tasklist         
+    # - name: "list of all processes along with their corresponding PID, and services that are tied to them"
+    #   run: tasklist /svc  
+    # - name: "look for unusual services"
+    #   run: net start                       
+    # - name: "query unusual services"
+    #   run: sc query  
+
+
+  windows-latest-pwsh-osquery:
+    name: "windows-latest Microsoft Windows Server 2019 Datacenter pwsh"  
+    runs-on: windows-latest
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v1
+    #https://chocolatey.org/packages/osquery/      
+    # - name: "Install osquery" 
+    #   run: choco install --yes --no-progress --virus-check  osquery   
+    - name: "Install osquery - powershell script" 
+      run: .\scripts\Install_Osquery.ps1
+      shell: pwsh      
+    # - name: "Query osquery service - cmd" 
+    #   run: |
+    #     sc query
+    #   shell: cmd          
+    # - name: "Close/reopen your shell to see the changes" 
+    #   run: refreshenv          
+    #   shell: pwsh  
+    # - name: "Close/reopen your shell to see the changes" 
+    #   run: |
+    #       refreshenv
+    #       Start-Service osqueryd
+    #   shell: pwsh        
+  #   - name: "List both the Display and Service name for both running and stopped services" 
+  #     run: sc query type= service state= all
+  #   - name: "List both the Display and Service name for active services" 
+  #     run: sc query type= service state= active 
+  #   - name: "List both the Display and Service name for inactive services" 
+  #     run: sc query type= service state= inactive            
+  #   - name: "Verify osquery service" 
+  #     run: Get-Service osqueryd
+  #     shell: pwsh     
+  #   #https://osquery.readthedocs.io/en/stable/installation/install-windows/#running-osquery    
+  #   - name: "Running osquery using Powershell" 
+  #     run: Start-Service osqueryd
+  #     shell: pwsh                             
+  #   - name: "check if server is virtual"
+  #     run: Systeminfo | findstr /i model   
+  #   - name: "check the PROCESSOR_ARCHITECTURE environment variable.64-bit systems will say AMD64 and 32-bit systems should say x86"
+  #     run: wmic OS get OSArchitecture     
+  #   - name: "osfingerprinting"
+  #     run: systeminfo | more  
+  #   - name: "display all processes, executable path"
+  #     run: wmic process list full         
+  #   - name: "list of running services"
+  #     run: tasklist         
+  #   - name: "list of all processes along with their corresponding PID, and services that are tied to them"
+  #     run: tasklist /svc  
+  #   - name: "look for unusual services"
+  #     run: net start                       
+  #   - name: "query unusual services"
+  #     run: sc query 
+
+     
+  # windows-2016-cmd-osquery:
+  #   name: "Microsoft Windows Server 2016 Datacenter cmd"
+  #   runs-on: windows-2016
+  #   steps:
+  #   - name: Checkout
+  #     uses: actions/checkout@v1
+  #   #https://chocolatey.org/packages/osquery/      
+  #   - name: "Install osquery" 
+  #     run: choco install osquery  
+  #   # - name: "Close/reopen your shell to see the changes" 
+  #   #   run: |
+  #   #       refreshenv
+  #   #       sc.exe start osqueryd
+  #   #   shell: cmd         
+  #   #https://osquery.readthedocs.io/en/stable/installation/install-windows/#running-osquery
+  #   - name: "Running osquery using cmd.exe" 
+  #     run: sc.exe start osqueryd
+  #     shell: cmd        
+  #   - name: "check if server is virtual"
+  #     run: Systeminfo | findstr /i model   
+  #   - name: "check the PROCESSOR_ARCHITECTURE environment variable.64-bit systems will say AMD64 and 32-bit systems should say x86"
+  #     run: wmic OS get OSArchitecture     
+  #   - name: "osfingerprinting"
+  #     run: systeminfo | more  
+  #   - name: "display all processes, executable path"
+  #     run: wmic process list full         
+  #   - name: "list of running services"
+  #     run: tasklist         
+  #   - name: "list of all processes along with their corresponding PID, and services that are tied to them"
+  #     run: tasklist /svc  
+  #   - name: "look for unusual services"
+  #     run: net start                       
+  #   - name: "query unusual services"
+  #     run: sc query      
+
+  windows-2016-pwsh-osquery:
+    name: "Microsoft Windows Server 2016 Datacenter pwsh"
+    runs-on: windows-2016
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v1
+    - name: "Install osquery - powershell script" 
+      run: .\scripts\Install_Osquery.ps1
+      shell: pwsh         
+    - name: "check if server is virtual"
+      run: Systeminfo | findstr /i model   
+    - name: "check the PROCESSOR_ARCHITECTURE environment variable.64-bit systems will say AMD64 and 32-bit systems should say x86"
+      run: wmic OS get OSArchitecture     
+    - name: "osfingerprinting"
+      run: systeminfo | more  
+    - name: "display all processes, executable path"
+      run: wmic process list full         
+    - name: "list of running services"
+      run: tasklist         
+    - name: "list of all processes along with their corresponding PID, and services that are tied to them"
+      run: tasklist /svc  
+    - name: "look for unusual services"
+      run: net start                       
+    - name: "query unusual services"
+      run: sc query        

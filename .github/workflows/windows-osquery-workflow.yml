@@ -1,5 +1,5 @@
 
-name: "Osquery CI workflow"
+name: "windows osquery CI workflow"
 
 on:
   push:
@@ -9,23 +9,23 @@ on:
 jobs:
 
 
-  # windows-latest-cmd-osquery:
-  #   name: "windows-latest Microsoft Windows Server 2019 Datacenter cmd"  
-  #   runs-on: windows-latest
-  #   steps:
-  #   - name: Checkout
-  #     uses: actions/checkout@v1
-  #     #https://chocolatey.org/packages/osquery/
-  #   - name: "Install osquery - command line" 
-  #     run: choco install --yes --no-progress --virus-check osquery  
-  #   - name: "Close/reopen your shell to see the changes" 
-  #     run: refreshenv
-  #     shell: cmd         
-  #   - name: "Close/reopen your shell to see the changes" 
-  #     run: |
-  #         refreshenv
-  #         sc.exe start osqueryd
-  #     shell: cmd         
+  windows-latest-cmd-osquery:
+    name: "windows-latest Microsoft Windows Server 2019 Datacenter cmd"  
+    runs-on: windows-latest
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v1
+      #https://chocolatey.org/packages/osquery/
+    - name: "Install osquery - command line" 
+      run: choco install --yes --no-progress --virus-check osquery  
+    - name: "Close/reopen your shell to see the changes" 
+      run: refreshenv
+      shell: cmd         
+    - name: "Close/reopen your shell to see the changes" 
+      run: |
+          refreshenv
+          sc.exe start osqueryd
+      shell: cmd         
     #https://osquery.readthedocs.io/en/stable/installation/install-windows/#running-osquery
     # - name: "Running osquery using cmd.exe" 
     #   run: sc.exe start osqueryd
